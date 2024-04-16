@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:device_info/device_info.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tinBudget_app/screens/settings/widgets/settings_tile.dart';
 import 'package:tinBudget_app/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
@@ -39,7 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'Share with friends',
                   icon: 'assets/images/settings/share.svg',
                   onTap: () {
-                    Share.share('Check out Tin-Budget in AppStore!');
+                    _shareContent();
                   }),
               SizedBox(height: 10),
               SettingsTile(
@@ -72,6 +76,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
     );
+  }
+}
+
+Future<void> _shareContent() async {
+  final deviceInfo = DeviceInfoPlugin();
+  if (Platform.isIOS) {
+    final iosDeviceInfo = await deviceInfo.iosInfo;
+    if (iosDeviceInfo.model.contains('iPad')) {
+      _shareWithFriends();
+    } else {
+      Share.share(
+          'Check out Tin-Budget in AppStore! https://apps.apple.com/us/app/tin-budget/id6496848601');
+    }
+  } else {
+    _shareWithFriends();
+  }
+}
+
+Future<void> _shareWithFriends() async {
+  const url = 'https://apps.apple.com/us/app/tin-budget/id6496848601';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
 

@@ -204,6 +204,21 @@ class _GameScreenState extends State<GameScreen> {
                             color: AppColors.black40,
                           ),
                         ),
+                        Row(
+                          children: [
+                            const Spacer(),
+                            IconButton(
+                              icon: Icon(Icons.arrow_forward),
+                              onPressed: () {
+                                if (pageController.page! < 1) {
+                                  pageController.nextPage(
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.easeInOut);
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                         SizedBox(height: 10),
                         Column(
                           children: stocks
@@ -251,7 +266,7 @@ class _GameScreenState extends State<GameScreen> {
                                               textColor: AppColors.black,
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -270,7 +285,7 @@ class _GameScreenState extends State<GameScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
                               color: AppColors.accentYellow,
                               borderRadius:
@@ -325,6 +340,21 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         SizedBox(height: 10),
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.arrow_back),
+                              onPressed: () {
+                                if (pageController.page! > 0) {
+                                  pageController.previousPage(
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.easeInOut);
+                                }
+                              },
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
                         portfolio.isEmpty
                             ? AppContainer(
                                 child: Row(
