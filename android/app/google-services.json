@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446083002319",
+    "project_id": "tinBudget-app-352e7",
+    "storage_bucket": "tinBudget-app-352e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446083002319:android:ad688463bf2a71972d2cba",
+        "android_client_info": {
+          "package_name": "com.take.invest.hiqio.tinBudget_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUygj0R90pAUXiwmfUOakoKw1_YlTF7oI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,73 @@
+name: tinBudget_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_inappwebview: ^5.8.0
+  flutter_launcher_icons: ^0.13.1
+  auto_route: ^8.0.3
+  flutter_bloc: ^8.1.5
+  flutter_svg: ^2.0.10+1
+  share_plus:
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  sliding_up_panel: ^2.0.0+1
+  chip_list: ^2.4.4+8
+  firebase_messaging: ^14.2.2
+  firebase_core: ^2.21.0
+  firebase_remote_config: ^4.3.3
+
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  auto_route_generator: ^8.0.0
+  build_runner: ^2.4.9
+  hive_generator: ^2.0.1
+
+  flutter_lints: ^3.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+     - assets/images/
+     - assets/images/onboarding/
+     - assets/images/tab-icons/
+     - assets/images/news/
+     - assets/images/settings/
+     - assets/images/elements/
+     - assets/images/finance/
+     - assets/images/game/
+
+
+  fonts:
+    - family: SF Pro Display
+      fonts:
+        - asset: fonts/SFProDisplay-Regular.ttf
+        - asset: fonts/SFProDisplay-Light.ttf
+        - asset: fonts/SFProDisplay-Medium.ttf
+        - asset: fonts/SFProDisplay-Bold.ttf
+        - asset: fonts/SFProDisplay-Semibold.ttf
+        - asset: fonts/SFProDisplay-Black.ttf
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/app_icon.png"
