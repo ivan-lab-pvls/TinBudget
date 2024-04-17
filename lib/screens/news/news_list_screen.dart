@@ -66,12 +66,12 @@ class _NewsListScreenState extends State<NewsListScreen> {
                               ),
                               SizedBox(width: 10),
                               SizedBox(
-                                width: 220,
+                                width: MediaQuery.of(context).size.width * .5,
                                 child: Text(
                                   _news.title,
-                                  maxLines: 3,
+                                  maxLines: 5,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.black),
                                 ),

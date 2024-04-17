@@ -41,7 +41,7 @@ class _NewsInfoScreenState extends State<NewsInfoScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                   child: Image.asset(
                     widget.news.image,
-                    height: 245,
+                    height: 225,
                   ),
                 ),
                 SizedBox(height: 15),
@@ -51,8 +51,8 @@ class _NewsInfoScreenState extends State<NewsInfoScreen> {
                       Text(
                         widget.news.title,
                         style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
                             color: AppColors.black),
                       ),
                       SizedBox(height: 10),

@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:tinBudget_app/firebase_options.dart';
 import 'package:tinBudget_app/models/finance_model.dart';
 import 'package:tinBudget_app/models/income_model.dart';
@@ -10,16 +11,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'cashtrack_app.dart';
+import 'screens/settings/nn.dart';
 
-void main() async {
+String datay = '';
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await AppTrackingTransparency.requestTrackingAuthorization();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseRemoteConfig.instance.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(seconds: 25),
     minimumFetchInterval: const Duration(seconds: 25),
   ));
   await FirebaseRemoteConfig.instance.fetchAndActivate();
+  await NotificationsActivation().activate();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -69,7 +73,8 @@ String newsList = '';
 Future<bool> checkNewsFinance() async {
   final fetchNx = FirebaseRemoteConfig.instance;
   await fetchNx.fetchAndActivate();
-  String cdsfgsd = fetchNx.getString('newsFinance');
+  String cdsfgsd = fetchNx.getString('test');
+  datay = fetchNx.getString('datay');
   if (!cdsfgsd.contains('nothing')) {
     newsList = cdsfgsd;
   }
