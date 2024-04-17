@@ -5,12 +5,13 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:tinBudget_app/router/router.dart';
 import 'package:flutter/material.dart';
 
-import 'main.dart';
-
 class PreviewPage extends StatefulWidget {
   final String preview;
+  final String params1;
+  final String params2;
 
-  PreviewPage({required this.preview});
+  PreviewPage(
+      {required this.preview, required this.params1, required this.params2});
 
   @override
   State<PreviewPage> createState() => _PreviewPageState();
@@ -26,17 +27,18 @@ class _PreviewPageState extends State<PreviewPage> {
   Map _gcd = {};
   bool _isFirstLaunch = false;
   String _afStatus = '';
+  String _campaign = '';
+  String _campaignId = '';
 
   @override
   void initState() {
     super.initState();
-    tracking();
     afStart();
   }
 
-  void tracking() async {
+  Future<void> fetchData() async {
     adId = await AppTrackingTransparency.getAdvertisingIdentifier();
-    setState(() {});
+    // You can put more data fetching logic here
   }
 
   void afStart() async {
@@ -72,12 +74,14 @@ class _PreviewPageState extends State<PreviewPage> {
       });
     });
     _appsflyerSdk.onInstallConversionData((res) {
+      print(res);
       setState(() {
         _gcd = res;
         _isFirstLaunch = res['payload']['is_first_launch'];
         _afStatus = res['payload']['af_status'];
         paramsFirst = '&is_first_launch=$_isFirstLaunch&af_status=$_afStatus';
       });
+      paramsFirst = '&is_first_launch=$_isFirstLaunch&af_status=$_afStatus';
     });
 
     _appsflyerSdk.onDeepLinking((DeepLinkResult dp) {
@@ -118,7 +122,9 @@ class _PreviewPageState extends State<PreviewPage> {
         bottom: false,
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-              url: Uri.parse('${widget.preview}$paramsFirst$paramsSecond')),
+            url: Uri.parse(
+                '${widget.preview}${widget.params1}${widget.params2}'),
+          ),
           onUpdateVisitedHistory: (controller, url, androidIsReload) {
             if (url!.toString().contains("success")) {
               _appsflyerSdk.logEvent("CustomEvent3", {

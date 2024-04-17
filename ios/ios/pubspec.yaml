@@ -26,14 +26,12 @@ dependencies:
   share_plus: ^7.2.2
   get_it: ^7.6.4
   smooth_page_indicator: ^1.1.0
-  flutter_launcher_icons: ^0.13.1
   appsflyer_sdk:
   shared_preferences: ^2.2.2
   sliding_up_panel: ^2.0.0+1
   chip_list: ^2.4.4+8
   percent_indicator: ^4.2.3
   fl_chart: ^0.66.2
-
   cupertino_icons: ^1.0.2
   app_tracking_transparency: ^2.0.4
 
@@ -73,6 +71,5 @@ flutter:
 
 flutter_icons:
   android: "launcher_icon"
-  ios: true
-  remove_alpha_ios: true
-  image_path: "assets/images/app_icon.png"
+  ios: false
+  remove_alpha_ios: false
