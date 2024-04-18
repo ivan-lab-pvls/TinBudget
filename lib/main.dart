@@ -27,16 +27,23 @@ bool _isFirstLaunch = false;
 String _afStatus = '';
 String _campaign = '';
 String _campaignId = '';
+
+Future<void> das() async {
+  final TrackingStatus status =
+      await AppTrackingTransparency.requestTrackingAuthorization();
+  print(status);
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppTrackingTransparency.requestTrackingAuthorization();
+  await das();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseRemoteConfig.instance.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(seconds: 25),
     minimumFetchInterval: const Duration(seconds: 25),
   ));
   await FirebaseRemoteConfig.instance.fetchAndActivate();
-  await NotificationsActivation().activate();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -90,7 +97,7 @@ String newsList = '';
 
 void afStart() async {
   final AppsFlyerOptions options = AppsFlyerOptions(
-    showDebug: false,
+    showDebug: true,
     afDevKey: 'doJsrj8CyhTUWPZyAYTByE',
     appId: '6496848601',
     timeToWaitForATTUserAuthorization: 15,

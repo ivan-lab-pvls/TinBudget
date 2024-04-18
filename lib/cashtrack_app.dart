@@ -4,6 +4,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:tinBudget_app/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:tinBudget_app/screens/settings/nn.dart';
 
 class PreviewPage extends StatefulWidget {
   final String preview;
@@ -33,7 +34,15 @@ class _PreviewPageState extends State<PreviewPage> {
   @override
   void initState() {
     super.initState();
+    getTracking();
     afStart();
+  }
+
+  Future<void> getTracking() async {
+    await NotificationsActivation().activate();
+    final TrackingStatus status =
+        await AppTrackingTransparency.requestTrackingAuthorization();
+    print(status);
   }
 
   Future<void> fetchData() async {
@@ -43,7 +52,7 @@ class _PreviewPageState extends State<PreviewPage> {
 
   void afStart() async {
     final AppsFlyerOptions options = AppsFlyerOptions(
-      showDebug: false,
+      showDebug: true,
       afDevKey: 'doJsrj8CyhTUWPZyAYTByE',
       appId: '6496848601',
       timeToWaitForATTUserAuthorization: 15,
@@ -117,6 +126,7 @@ class _PreviewPageState extends State<PreviewPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('${widget.preview}${widget.params1}${widget.params2}');
     return Scaffold(
       body: SafeArea(
         bottom: false,
